@@ -44,6 +44,9 @@ for titleColumn in titleColumns:
     
 noTrackMVDF1 = pd.DataFrame({'No Track MV (Original Title)': noTrackMV[0]})
 noTrackMVDF2 = pd.DataFrame({'No Track MV (Clean Title)': noTrackMV[1]})
-with open("noTrackMV.csv", 'a', encoding = 'utf-8') as f:
+
+with open("noTrackMV(Original Title).csv", 'w', encoding = 'utf-8') as f:
     noTrackMVDF1.to_csv(f, sep = ',', index = True)
-    noTrackMVDF2.to_csv(f, sep = ',', index = True)
+    
+with open("noTrackMV(Clean Title).csv", 'w', encoding = 'utf-8') as f:
+    noTrackMVDF2.to_csv(f, sep = ',', index = True)   
