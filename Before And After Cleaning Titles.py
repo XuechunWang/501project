@@ -1,7 +1,7 @@
 import sys
 import spotipy
 
-from spotipy.oauth2 import SpotifyClientCredentials#%%
+from spotipy.oauth2 import SpotifyClientCredentials
 
 import os
 import json
