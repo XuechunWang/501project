@@ -9,7 +9,7 @@ import re
 import unidecode as uni
 
 
-
+# read in data
 mvData = pd.read_csv('mv.csv', sep = ',', encoding ='utf-8')
 #print(mvData[:10])
 
@@ -85,7 +85,7 @@ romanNumMV = [movie for movie in tempMV if re.search(romanNum, movie) is not Non
 romanNumList = ['Episode VIII', 'Vol. I','Part II','II','Part III','Episode III',
                 ' Episode V','Vol. 2','Episode VI','VI', 'Part 1',' II','Episode I',
                 'chapter 2','Chapter 2','Vol. 1', ': I ',':I ', 'IV']
-
+# replace roman number part with space
 cleanTitleLst_3 = []    
 for title in tempMV:
     for romanNum in romanNumList:
@@ -96,8 +96,9 @@ for title in tempMV:
     cleanTitleLst_3.append(title)
 #print(cleanTitleLst_3)[:10]
 
-
-# fix special characters 
+###########################
+## fix special characters
+###########################
 # since white space works well in our search, 
 # we decide to replace all the special characters found
 # with the white space
@@ -105,7 +106,7 @@ for title in tempMV:
 undesiredChars = set(re.findall(undesiredPattern, '#'.join(cleanTitleLst_3)))
 #print(undesiredChars)
 
-# this variable is to store the clean version for Spotify of movie titles
+# this variable is to store the clean version of movie titles for Spotify search
 cleanTitleSpot = []
 # loop through every movie title and replace undesired chars with the space
 for mv in cleanTitleLst_3:
@@ -116,8 +117,10 @@ for mv in cleanTitleLst_3:
 #print(cleanTitleSpot)
 #print(len(cleanTitleSpot))
 
+# add a new column to the original data frame 
 mvData['cleanTitleSpot'] = cleanTitleSpot
 
+# create a new output file 
 with open('cleanMVData.csv','w',encoding='utf-8') as f:
     mvData.to_csv(f, sep=',', index = False)
     
