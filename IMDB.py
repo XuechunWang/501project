@@ -246,6 +246,9 @@ def scrpNxtPage(myURL, query):
 
 
 
-
-scrpIMDB()
+def main():
+    scrpIMDB()
+   
+if __name__ == "__main__":
+    main()  
 
