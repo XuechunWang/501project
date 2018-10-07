@@ -8,7 +8,7 @@ Created on Sat Oct  6 10:11:38 2018
 import pandas as pd
 import numpy as np
 
-'''this file is to check the data cleaniness
+'''this file is to check the data cleanliness
 '''
 
 myData=pd.read_csv('full_dataset.csv')
@@ -84,7 +84,6 @@ numericcol = ['acousticness',
  'Movie_rate',
  'Movie_runtime',
  'Movie_yr']
-#columnname = ['acousticness',
 ##get the scope for each attribute
 mindata = [0,0,0,0,0,0,0,-60,0,0,0,0,0,0,0.01,6.9,0,1900]
 maxdata = [1,1,4000000,1,1,11,1,1,1,1,250,8,1,100,10000,10,1000,2018]
