@@ -113,16 +113,16 @@ feature=duplicated_rows(feature)
 feature.dropna()
 #features=duplicated_rows(getfeature)
 #def quality_check(df):
-    '''function to check the quality of cleanness on the whole dataset
-    '''
+#    '''function to check the quality of cleanness on the whole dataset
+#    '''
     #df.duplicated(keep='first')
     
     ##drop empty rows
 ##check range of each column
 #def range_check(df):
-    '''this function is written to check whether there exist illegal values 
-    in each column
-    '''
+#    '''this function is written to check whether there exist illegal values 
+#    in each column
+#    '''
 filtered_data = feature.dropna(axis='rows', how='any')
 filename='full_dataset.csv'
 filtered_data.to_csv(filename, sep = ',',encoding='utf-8-sig', mode='a', index = False, float_format='%.8f')
