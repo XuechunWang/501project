@@ -20,11 +20,7 @@ myData.Movie_yr = myData.Movie_yr.str.extract('(\d+)').astype(np.int)
 myData.Movie_gross.replace(np.nan,0,inplace=True)
 ##get the description of all columns
 colname=list(myData.columns.values)
-#p=myData['acousticness'].describe()
-#k=p.to_frame()
-#m=myData['key'].describe()
-#j['key']
-#k.join(j)
+
 def get_description(colname,myData):
     describe=[]
     for i in colname:
@@ -43,7 +39,7 @@ str_cols=['Track_name','Track_ID','Album_name','Album_ID','Movie_name','Movie_ge
 for t in str_cols:
     del description[t]
 
-##get rate of narows rate
+##get rate of narows (rows with NA values)
 def scope_check(myData,colname,min_val,max_val):
     '''min_val is a dataframe storing all min values of each column
     max_val is a data frame storing all max values of each column
@@ -56,16 +52,7 @@ def scope_check(myData,colname,min_val,max_val):
     rate=count/len(myData)             
     return rate
 
-#t=pd.DataFrame(columns=colname)
-#t=t.append(myData[3:4])
-#t=t.append(myData[7:8])
-##remove duplicated rows
-#def get_duplicated_rate(df,colname):
-   # '''this function is to check duplicated rows rate for a specific column
-   # '''
-    #new=df.drop_duplicates(colname)
-    #rate=1-(len(new)/len(df))
-    #return rate
+##get numeric columns
 numericcol = ['acousticness',
  'danceability',
  'duration_ms',
@@ -84,7 +71,7 @@ numericcol = ['acousticness',
  'Movie_rate',
  'Movie_runtime',
  'Movie_yr']
-##get the scope for each attribute
+##set up a data frame for the normal scope of each attribute
 mindata = [0,0,0,0,0,0,0,-60,0,0,0,0,0,0,0.01,6.9,0,1900]
 maxdata = [1,1,4000000,1,1,11,1,1,1,1,250,8,1,100,10000,10,1000,2018]
 mindataframe = pd.DataFrame(data= [mindata], columns=numericcol)
@@ -94,6 +81,7 @@ ScopeFrame = pd.concat(frames)
 ScopeFrame=ScopeFrame.reset_index()
 del ScopeFrame['index']
 print(ScopeFrame)
+
 ##get narows rate
 ##get the scope for numeric columns
 scope_rate=[]
@@ -109,6 +97,7 @@ result_each_column=pd.DataFrame(columns=colname)
 result=result_each_column.append(outrange_rate,sort=False)
 result=result.append(na_rate)
 
+## create output files
 filename='cleaned_data.csv'
 myData.to_csv(filename, sep = ',',encoding='utf-8-sig', mode='a', index = False, float_format='%.8f')
 
