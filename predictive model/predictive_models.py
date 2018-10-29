@@ -53,7 +53,7 @@ def data_processing():
     return myData
 
 
-# Use statistical test to help us elminate usfuless features to simplify our model
+# Use statistical test to help us elminate useless features to simplify our model
 def feature_selection(X,Y,number):
     # feature extraction using chi test
     test = SelectKBest(score_func=chi2, k=number)
@@ -75,7 +75,7 @@ def cross_validation(models,X,Y):
     mean_tpr_list = []
     for name, model in models:
         true_posit_set = []
-        accuarcy_set = []
+        accuracy_set = []
         mean_fpr = np.linspace(0, 1, 100)   
         for train, test in cv.split(X, Y):
             # fit the models 
@@ -85,7 +85,7 @@ def cross_validation(models,X,Y):
             true_posit_set.append(interp(mean_fpr, fpr, tpr))
             true_posit_set[-1][0] = 0.0
             roc_auc = auc(fpr, tpr)
-            accuarcy_set.append(roc_auc)
+            accuracy_set.append(roc_auc)
         plt.plot([0, 1], [0, 1], linestyle='--', lw=2, color='r',
                  label='Chance', alpha=.8)
         #calculate the mean of test results of all validations
@@ -93,7 +93,7 @@ def cross_validation(models,X,Y):
         mean_tpr[-1] = 1.0
         mean_auc = auc(mean_fpr, mean_tpr)
         # Also calculate the standard deviation
-        std_auc = np.std(accuarcy_set)
+        std_auc = np.std(accuracy_set)
         mean_fpr_list.append(mean_fpr)
         mean_tpr_list.append(mean_tpr)
         #plot the mean of a collection of false positive rate, true positive rate
