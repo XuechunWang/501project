@@ -14,7 +14,9 @@ from scipy.stats import ttest_ind
 from sklearn.preprocessing import normalize
 from sklearn import linear_model
 from sklearn.linear_model import LinearRegression
-import statsmodels.api as sm
+from statsmodels.api import OLS
+import statsmodels.api as sm 
+
 
 
 
@@ -44,14 +46,11 @@ def ttest(x, y):
     print(ttest)
 
 #conduct linear regression
-def linear_reg(x,y):
-    model = LinearRegression()
-    regr = model.fit(x, y)
-    RSquare = model.score(x, y)
-    print('Intercept: \n', regr.intercept_)
-    print('Coefficients: \n', regr.coef_)
-    print('The coefficient of determination R^2 of the prediction: \n', RSquare)
-
+def linear_reg(X,y):
+    X = sm.add_constant(X) ## add an intercept (beta_0) to our model
+    model = sm.OLS(y, X).fit() ## sm.OLS(output, input)
+    print(model.summary()) # Print out the statistics
+    
 def main():
     #Process the data
     normalizedData = data_processing()
@@ -67,8 +66,9 @@ def main():
     ttest(mode_value,danceability_value)
     
     #Linear Regression on how popularity is related to valence, movie_gross, movie rate
-    x, y = normalizedData[['valence','Movie_gross','Movie_rate']], normalizedData.popularity
-    linear_reg(x,y)
+    X, y = normalizedData[['valence','Movie_gross','Movie_rate']], normalizedData.popularity
+    linear_reg(X,y)
+    
     
 if __name__ == "__main__":
     main()
