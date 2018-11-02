@@ -1,6 +1,0 @@
-K-means:
-The average calinski_harabaz_score is : 58647.98277896823
-dbScan:
-The average calinski_harabaz_score is : 1627.4103451344167
-Hierarchical:
-The average calinski_harabaz_score is : 56359.857650266626
