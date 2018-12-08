@@ -1,6 +1,8 @@
 #501 Project
 #by Xunchun Wang, Yao Huang, Yuhui Tang and Yan Liu
 #Github: https://github.com/XuechunWang/501project/
+#Website URL: https://xcw1203.wixsite.com/mysite
+
 
 ## Acquire Movies' Data from IMDb
 IMDB.py: a web scraper to acquire movie data from IMDb's advanced search web page.
